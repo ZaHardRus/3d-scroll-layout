@@ -22,4 +22,6 @@ window.onscroll = function () {
         frame.setAttribute(`style`,`transform: ${transform} ; opacity: ${opacity}`)
     })
 }
-window.scrollTo(0,1)
+document.onload(
+    window.scrollTo(0,30)
+)
