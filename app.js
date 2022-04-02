@@ -12,7 +12,7 @@ window.onscroll = function() {
 
         lastPosition = top
 
-	frames.forEach(function(n, i) {
+	frames.forEach(function(el, i) {
 		zVals.push((i * zSpacing) + zSpacing)
 		zVals[i] += delta * - 6
 		let frame = frames[i],
@@ -23,6 +23,6 @@ window.onscroll = function() {
 
 }
 document.addEventListener('DOMContentLoaded', function() {
-    window.scrollTo(0, 1)
-    root.style.setProperty('--depth',frames.length * 345 + 'px')
+    window.scrollTo(1, 75)
+    //root.style.setProperty('--depth',frames.length * 345 + 'px')
  }, false);
