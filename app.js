@@ -1,27 +1,28 @@
-let zSpacing = -1900; //расстояние между .frame по z-оси
-let lastPosition = zSpacing / 6.5
-let root = document.querySelector(':root')
+let zSpacing = -1900,
+    lastPosition = zSpacing / 6.5,
+	$frames = document.getElementsByClassName('frame'),
+	frames = Array.from($frames),
+	zVals = []
+    root = document.querySelector(':root')
 
-let frames = document.getElementsByClassName('frame')
-let arrayFrames = Array.from(frames)
-let zVals = []
+window.onscroll = function() {
 
-window.onscroll = function () {
-    let top = document.documentElement.scrollTop;
-    let delta = lastPosition - top;
-    root.style.setProperty('--depth',arrayFrames.length * 345 + 'px')
+	let top = document.documentElement.scrollTop,
+		delta = lastPosition - top
 
-    lastPosition = top;
-    arrayFrames.forEach(function (el,index) {
-        zVals.push((index * zSpacing) + zSpacing)
-        zVals[index] += delta * - 6
+        lastPosition = top
 
-        let frame = frames[index]
-        let transform = `translateZ(${zVals[index]}px)`
-        let opacity = zVals[index] < Math.abs(zSpacing) / 2 ? 1 : 0
-        frame.setAttribute(`style`,`transform: ${transform} ; opacity: ${opacity}`)
-    })
+	frames.forEach(function(n, i) {
+		zVals.push((i * zSpacing) + zSpacing)
+		zVals[i] += delta * - 6
+		let frame = frames[i],
+				transform = `translateZ(${zVals[i]}px)`,
+				opacity = zVals[i] < Math.abs(zSpacing) / 2 ? 1 : 0
+		frame.setAttribute('style', `transform: ${transform}; opacity: ${opacity}`)
+	})
+
 }
-document.onload(
-    window.scrollTo(0,30)
-)
+document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 1)
+    root.style.setProperty('--depth',frames.length * 345 + 'px')
+ }, false);
